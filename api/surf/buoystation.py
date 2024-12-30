@@ -288,7 +288,6 @@ class BuoyStation(BaseStation):
             data_lines = count_limit
 
         raw_model_run_components = raw_lines[2].split()
-        #hour = int(raw_model_run_components[3])
         model_run_date = datetime.strptime(raw_model_run_components[2], '%Y%m%d')
 
         buoy_data = []
@@ -338,13 +337,21 @@ class BuoyStation(BaseStation):
                 component_direction = parse_float(raw_wave_data[2].strip())
                 component_compass_direction = units.degree_to_direction(component_direction)
                 component = Swell(units.Units.metric, component_wave_height, component_period, component_direction, component_compass_direction)
- 
+
                 if significant is not None:
                     datapoint.wave_summary = Swell(units.Units.metric, significant_wave_height, component_period, component_direction, component_compass_direction)
                 datapoint.swell_components.append(component)
-            
+
             if not datapoint.wave_summary:
-                datapoint.wave_summary = Swell(units.Units.metric, significant_wave_height, datapoint.swell_components[0].period, datapoint.swell_components[0].direction, datapoint.swell_components[0].compass_direction)
+                if len(datapoint.swell_components) > 0:
+                    datapoint.wave_summary = Swell(units.Units.metric, significant_wave_height, 
+                                                 datapoint.swell_components[0].period,
+                                                 datapoint.swell_components[0].direction, 
+                                                 datapoint.swell_components[0].compass_direction)
+                else:
+                    # Create a default wave summary if no swell components exist
+                    datapoint.wave_summary = Swell(units.Units.metric, significant_wave_height, 
+                                                 float('nan'), float('nan'), '')
 
             buoy_data.append(datapoint)
             
@@ -385,6 +392,7 @@ class BuoyStation(BaseStation):
 
     def fetch_wave_forecast_bulletin(self, model):
         url = self.wave_forecast_bulletin_url(model)
+        print(url)
         response = requests.get(url)
         if len(response.text) < 1:
             return None
