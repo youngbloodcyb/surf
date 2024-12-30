@@ -35,12 +35,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Chart({ data }: ComponentProps) {
+export function ForecastChart({ data }: ComponentProps) {
   return (
-    <Card>
+    <Card className="w-96">
       <CardHeader>
-        <CardTitle>Wave Height</CardTitle>
-        <CardDescription>Showing wave heights over time</CardDescription>
+        <CardTitle>Wave Forecast</CardTitle>
+        <CardDescription className="sr-only">
+          Showing wave heights over time
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -78,7 +80,7 @@ export function Chart({ data }: ComponentProps) {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              {new Date(data[0].time).toLocaleDateString()} -{" "}
+              {new Date(data[0].time).toLocaleDateString()} through{" "}
               {new Date(data[data.length - 1].time).toLocaleDateString()}
             </div>
           </div>
