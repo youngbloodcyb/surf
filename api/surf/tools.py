@@ -226,10 +226,13 @@ def parse_int(raw_value):
 
 def simple_serialize(obj):
     if isinstance(obj, datetime.datetime):
-        serial = obj.isoformat()
-        return serial
-
-    return obj.__dict__
+        return obj.isoformat()
+    elif isinstance(obj, list):
+        return [simple_serialize(item) for item in obj]
+    elif hasattr(obj, '__dict__'):
+        return {key: simple_serialize(value) for key, value in obj.__dict__.items()}
+    else:
+        return obj
 
 
 def dump_json(obj):

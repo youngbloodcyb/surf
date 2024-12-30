@@ -1,12 +1,14 @@
-from flask import Flask
+from flask import Flask, jsonify
 from surf.location import Location
 from surf.buoystation import BuoyStation
 from surf.wavemodel import us_west_coast_gfs_wave_model
 from surf.buoydata import BuoyData
-from surf.tools import serialize
+from surf.tools import simple_serialize, dump_json
 from surf.weatherapi import WeatherApi
 from surf.units import Units
 from surf.buoyspectra import BuoySpectra
+from surf.buoydata import merge_wave_weather_data
+import json
 
 app = Flask(__name__)
 
@@ -31,11 +33,12 @@ def hello_world():
     for dat in data:
         dat.solve_breaking_wave_heights(ri_wave_location)
         dat.change_units(Units.english)
-    json_data = serialize(data)
+    json_data = dump_json(data)
     with open('forecast.json', 'w') as outfile:
         outfile.write(json_data)
 
-    maxs =[x.maximum_breaking_height for x in data]
+    maxs = [x.maximum_breaking_height for x in data]
     mins = [x.minimum_breaking_height for x in data]
     summary = [x.wave_summary.wave_height for x in data]
-    return "<p>Hello, World!</p>"
+    
+    return json.loads(json_data)

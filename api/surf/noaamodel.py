@@ -63,7 +63,7 @@ class NOAAModel(object):
 
     @staticmethod
     def latest_model_time():
-        current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=-5)
+        current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=-8)
         latest_model_hour = current_time.hour - (current_time.hour % 6)
         current_time = current_time + \
             datetime.timedelta(hours=-(current_time.hour-latest_model_hour))
