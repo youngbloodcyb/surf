@@ -37,7 +37,7 @@ export default async function Page({
   const categories = await getAllCategories();
 
   const page = pageParam ? parseInt(pageParam, 10) : 1;
-  const postsPerPage = 9;
+  const postsPerPage = 6;
   const totalPages = Math.ceil(posts.length / postsPerPage);
 
   const paginatedPosts = posts.slice(
