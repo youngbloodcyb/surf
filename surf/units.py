@@ -1,10 +1,8 @@
 import math
 import datetime
-try:
-    from netCDF4 import num2date
-except:
-    def num2date(dates):
-        return dates
+
+def num2date(dates):
+    return dates
 
 
 wind_directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']

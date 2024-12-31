@@ -7,7 +7,6 @@ setup(
     package_dir={"": "api"},
     install_requires=[
         "pytz",
-        "netCDF4",
         "requests",
     ],
 ) 
