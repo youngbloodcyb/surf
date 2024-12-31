@@ -8,7 +8,7 @@ import Link from "next/link";
 // Icons
 import { File, Pen, Tag, Boxes, User, Folder } from "lucide-react";
 
-import { SurfSpots } from "@/components/surf/spots";
+import { SurfSpots } from "@/components/surf/spots-summary";
 
 // This page is using the craft.tsx component and design system
 export default function Home() {
