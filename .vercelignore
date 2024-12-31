@@ -1,0 +1,4 @@
+.env
+.next/cache
+logs/
+temp/
