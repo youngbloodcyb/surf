@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
             ? "http://127.0.0.1:5328/api/p/:path*"
             : "/api/p/",
       },
+      {
+        source: "/admin",
+        destination: "https://wp.cameron.so/wp-admin",
+      },
     ];
   },
 };
