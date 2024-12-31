@@ -10,6 +10,7 @@ import { ForecastSchema } from "@/lib/schema/forecast";
 import { ForecastChart } from "@/components/surf/forecast-chart";
 import { CurrentConditionsSchema } from "@/lib/schema/current";
 import { CurrentConditions } from "@/components/surf/current-conditions";
+import { headers } from "next/headers";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -26,6 +27,9 @@ export async function continueConversation(
   input: string
 ): Promise<ClientMessage> {
   "use server";
+
+  const headersList = await headers();
+  const host = headersList.get("host");
 
   const history = getMutableAIState();
 
@@ -56,7 +60,9 @@ export async function continueConversation(
           });
 
           const forecast = await fetch(
-            `http://127.0.0.1:5328/api/p/forecast/${parsedLocation.object.location}`
+            process.env.NODE_ENV === "development"
+              ? `http://127.0.0.1:5328/api/p/forecast/${parsedLocation.object.location}`
+              : `https://${host}/api/p/forecast/${parsedLocation.object.location}`
           );
           const json = await forecast.json();
 
@@ -76,7 +82,9 @@ export async function continueConversation(
           });
 
           const currentConditions = await fetch(
-            `http://127.0.0.1:5328/api/p/current/${parsedLocation.object.location}`
+            process.env.NODE_ENV === "development"
+              ? `http://127.0.0.1:5328/api/p/current/${parsedLocation.object.location}`
+              : `https://${host}/api/p/current/${parsedLocation.object.location}`
           );
           const json = await currentConditions.json();
 
