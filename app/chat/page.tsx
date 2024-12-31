@@ -6,13 +6,6 @@ import { useActions, useUIState } from "ai/rsc";
 import { nanoid } from "nanoid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
 import { Waves, CalendarDays, Send, Sparkles } from "lucide-react";
 
 const DEFAULT_PROMPTS = [
@@ -54,7 +47,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div className="flex justify-center">
       <div className="container max-w-4xl py-10">
         <div>
           <div className="rounded-lg border bg-background p-6 space-y-6">
