@@ -44,3 +44,5 @@ __pycache__
 # api
 api/forecast.json
 forecast.json
+packages/surf/surf.egg-info
+packages/surf/build
