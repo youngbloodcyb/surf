@@ -8,6 +8,8 @@ import { nanoid } from "nanoid";
 import { generateObject } from "ai";
 import { ForecastSchema } from "@/lib/schema/forecast";
 import { ForecastChart } from "@/components/surf/forecast-chart";
+import { CurrentConditionsSchema } from "@/lib/schema/current";
+import { CurrentConditions } from "@/components/surf/current-conditions";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -59,6 +61,26 @@ export async function continueConversation(
           const json = await forecast.json();
 
           return <ForecastChart data={json} />;
+        },
+      },
+      currentConditions: {
+        description: "Get the current surf conditions for a specific location.",
+        parameters: CurrentConditionsSchema,
+        generate: async function* ({ location }) {
+          yield <div>Loading current conditions...</div>;
+
+          const parsedLocation = await generateObject({
+            model: openai("gpt-4o"),
+            schema: CurrentConditionsSchema,
+            prompt: `The user has asked for the current surf conditions for ${location}. Please return a proper location name.`,
+          });
+
+          const currentConditions = await fetch(
+            `http://127.0.0.1:5328/api/p/current/${parsedLocation.object.location}`
+          );
+          const json = await currentConditions.json();
+
+          return <CurrentConditions data={json} />;
         },
       },
     },
