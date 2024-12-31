@@ -41,9 +41,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://surf.cameron.so"),
 };
 
-// Revalidate content every hour
-export const revalidate = 3600;
-
 export default function RootLayout({
   children,
 }: {

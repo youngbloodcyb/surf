@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    ppr: "incremental",
+    dynamicIO: true,
+  },
   images: {
     domains: ["images.unsplash.com", "wp.cameron.so", "images.pexels.com"],
   },

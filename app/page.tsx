@@ -1,30 +1,33 @@
-// Craft Imports
 import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 import { sql } from "@vercel/postgres";
-
-// Components
+import { Suspense } from "react";
 import Link from "next/link";
-
-// Icons
 import { File, Pen, Tag, Boxes, User, Folder } from "lucide-react";
-
 import { SurfSpots } from "@/components/surf/spots-summary";
+import { SpotSummaryFallback } from "@/components/fallbacks/spot-summary-fallback";
 
-// This page is using the craft.tsx component and design system
 export default async function Home() {
-  const spots = (await sql`SELECT * FROM spot LIMIT 5`).rows as SurfSpot[];
   return (
     <Section>
       <Container>
         <Content />
-        <SurfSpots spots={spots} />
+        <Suspense fallback={<SpotSummaryFallback />}>
+          <SurfSpotWrapper />
+        </Suspense>
       </Container>
     </Section>
   );
 }
 
-// This is just some example JS to demonstrate automatic styling from brijr/craft
+// SurfSpots
+const SurfSpotWrapper = async () => {
+  "use cache";
+  const spots = (await sql`SELECT * FROM spot LIMIT 5`).rows as SurfSpot[];
+  return <SurfSpots spots={spots} />;
+};
+
+// Content
 const Content = () => {
   return (
     <article className="prose-m-none">
