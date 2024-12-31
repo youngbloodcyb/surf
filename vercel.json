@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/p/(.*)", "destination": "/api/index" }]
+  "rewrites": [{ "source": "/api/p/(.*)", "destination": "/api/index" }],
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 10
+    }
+  },
+  "excludeFiles": ["packages/**"]
 }
