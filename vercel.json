@@ -2,7 +2,7 @@
   "rewrites": [{ "source": "/p/(.*)", "destination": "/api/p/$1" }],
   "functions": {
     "api/index.py": {
-      "runtime": "python3.9"
+      "runtime": "python@3.9"
     }
   }
 }
