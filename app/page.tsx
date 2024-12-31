@@ -1,6 +1,7 @@
 // Craft Imports
 import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
+import { sql } from "@vercel/postgres";
 
 // Components
 import Link from "next/link";
@@ -11,12 +12,13 @@ import { File, Pen, Tag, Boxes, User, Folder } from "lucide-react";
 import { SurfSpots } from "@/components/surf/spots-summary";
 
 // This page is using the craft.tsx component and design system
-export default function Home() {
+export default async function Home() {
+  const spots = (await sql`SELECT * FROM spot LIMIT 5`).rows as SurfSpot[];
   return (
     <Section>
       <Container>
         <Content />
-        <SurfSpots />
+        <SurfSpots spots={spots} />
       </Container>
     </Section>
   );

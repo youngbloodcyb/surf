@@ -4,26 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Coordinates {
-  x: number;
-  y: number;
-}
-
-interface SurfSpot {
-  id: number;
-  slug: string;
-  description: string;
-  image_url: string;
-  created_at: Date;
-  updated_at: Date;
-  coordinates: Coordinates;
-  title: string;
-}
-
-interface SurfSpotsProps {
-  spots: SurfSpot[];
-}
-
 // Define rotation sets for each row
 const rowRotations = [
   [-7, -3, 4, -5, 6], // First row
