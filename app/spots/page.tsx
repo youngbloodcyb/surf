@@ -1,3 +1,5 @@
+"use cache";
+
 import { Section, Container } from "@/components/craft";
 import { SurfSpots } from "@/components/surf/surf-spots";
 import { sql } from "@vercel/postgres";
