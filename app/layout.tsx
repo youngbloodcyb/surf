@@ -95,8 +95,8 @@ const Nav = ({ className, children, id }: NavProps) => {
               </Button>
             ))}
           </div>
-          <Button asChild className="hidden sm:flex" variant="outline">
-            <Link href="https://github.com/9d8dev/next-wp">
+          <Button asChild className="hidden sm:flex">
+            <Link href="/chat">
               Chat <MessageCircleMore />
             </Link>
           </Button>
@@ -114,7 +114,6 @@ const Footer = () => {
         <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
           <div className="flex flex-col gap-6 not-prose">
             <Link href="/">
-              <h3 className="sr-only">brijr/components</h3>
               <Image
                 src={Logo}
                 alt="Logo"
@@ -124,7 +123,7 @@ const Footer = () => {
               ></Image>
             </Link>
             <p>
-              <Balancer>Next.js meets headless WordPress</Balancer>
+              <Balancer>Surf info and forecasts</Balancer>
             </p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
@@ -142,8 +141,8 @@ const Footer = () => {
         </Container>
         <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
           <p className="text-muted-foreground">
-            © <a href="https://9d8.dev">9d8</a>. All rights reserved.
-            2024-present.
+            © <a href="https://9d8.dev">Surf</a>. All rights reserved.
+            2025-present.
           </p>
         </Container>
       </Section>
