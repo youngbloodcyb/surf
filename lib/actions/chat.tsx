@@ -11,6 +11,7 @@ import { ForecastChart } from "@/components/surf/forecast-chart";
 import { CurrentConditionsSchema } from "@/lib/schema/current";
 import { CurrentConditions } from "@/components/surf/current-conditions";
 import { headers } from "next/headers";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -51,7 +52,7 @@ export async function continueConversation(
         description: "Get a forecast for a specific location.",
         parameters: ForecastSchema,
         generate: async function* ({ location }) {
-          yield <div>Loading forecast...</div>;
+          yield <Skeleton className="w-96 h-72" />;
 
           const parsedLocation = await generateObject({
             model: openai("gpt-4o"),
@@ -73,7 +74,7 @@ export async function continueConversation(
         description: "Get the current surf conditions for a specific location.",
         parameters: CurrentConditionsSchema,
         generate: async function* ({ location }) {
-          yield <div>Loading current conditions...</div>;
+          yield <Skeleton className="w-96 h-72" />;
 
           const parsedLocation = await generateObject({
             model: openai("gpt-4o"),

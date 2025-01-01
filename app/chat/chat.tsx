@@ -33,7 +33,7 @@ const rotations = [-7, -3, 6];
 export function Chat() {
   const [input, setInput] = useState<string>("");
   const [conversation, setConversation] = useUIState();
-  const { continueConversation } = useActions();
+  const { continueConversation, isLoading } = useActions();
 
   const handleSubmit = async (text: string) => {
     setInput("");
@@ -97,7 +97,7 @@ export function Chat() {
                   }`}
                 >
                   <div
-                    className={`rounded-lg px-4 py-2 max-w-[80%] ${
+                    className={`rounded-lg p-2 max-w-[80%] ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted"
@@ -124,8 +124,13 @@ export function Chat() {
                 setInput(event.target.value);
               }}
               className="flex-1"
+              disabled={isLoading}
             />
-            <Button type="submit" size="icon">
+            <Button
+              type="submit"
+              size="icon"
+              disabled={isLoading || !input.trim()}
+            >
               <Send className="h-4 w-4" />
               <span className="sr-only">Send message</span>
             </Button>

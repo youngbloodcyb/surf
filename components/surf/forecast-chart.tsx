@@ -37,9 +37,9 @@ const chartConfig = {
 
 export function ForecastChart({ data }: ComponentProps) {
   return (
-    <Card className="w-96">
+    <Card className="w-96 h-72">
       <CardHeader>
-        <CardTitle>Wave Forecast</CardTitle>
+        <CardTitle className="sr-only">Wave Forecast</CardTitle>
         <CardDescription className="sr-only">
           Showing wave heights over time
         </CardDescription>
@@ -77,11 +77,19 @@ export function ForecastChart({ data }: ComponentProps) {
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
+        <div className="flex w-full gap-2 text-sm justify-center">
           <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              {new Date(data[0].time).toLocaleDateString()} through{" "}
-              {new Date(data[data.length - 1].time).toLocaleDateString()}
+            <div className="flex items-center gap-2 leading-none text-muted-foreground text-center w-full text-xs">
+              {new Date(data[0].time).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}{" "}
+              through{" "}
+              {new Date(data[data.length - 1].time).toLocaleDateString(
+                "en-US",
+                { month: "short", day: "numeric", year: "numeric" }
+              )}
             </div>
           </div>
         </div>
