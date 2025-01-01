@@ -20,7 +20,7 @@ export const SurfSpots = ({ spots }: SurfSpotsProps) => {
   );
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center not-prose">
+    <div className="flex flex-col gap-4 justify-center items-center not-prose mt-4">
       {rows.map((row, rowIndex) => (
         <div
           key={`row-${rowIndex}`}

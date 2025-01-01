@@ -5,7 +5,7 @@ import { openai } from "@ai-sdk/openai";
 import { ReactNode } from "react";
 import { z } from "zod";
 import { nanoid } from "nanoid";
-import { generateObject } from "ai";
+import { generateObject, generateText } from "ai";
 import { ForecastSchema } from "@/lib/schema/forecast";
 import { ForecastChart } from "@/components/surf/forecast-chart";
 import { CurrentConditionsSchema } from "@/lib/schema/current";
@@ -89,7 +89,25 @@ export async function continueConversation(
           );
           const json = await currentConditions.json();
 
-          return <CurrentConditions data={json} />;
+          const prediction = await generateText({
+            model: openai("gpt-4o"),
+            prompt: `Based on these surf conditions: ${JSON.stringify(
+              json
+            )} and the user's question: ${input}, please provide more context or answer questions about the surf conditions. Don't return markdown. Keep it short and concise.`,
+          });
+
+          console.log(prediction.text);
+
+          return (
+            <div className="max-w-96">
+              <CurrentConditions data={json} />
+              <div className="rounded-lg py-2 px-4">
+                <p className="text-xs text-muted-foreground">
+                  {prediction.text}
+                </p>
+              </div>
+            </div>
+          );
         },
       },
     },

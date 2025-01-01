@@ -8,8 +8,10 @@ export default async function Page() {
   return (
     <Section>
       <Container>
-        <h1 className="text-center">Surf Spots</h1>
-        <p className="text-center">
+        <h1 className="text-center font-serif font-bold md:text-5xl">
+          Surf Spots
+        </h1>
+        <p className="text-center text-muted-foreground">
           A collection of surf spots from around the world.
         </p>
         <SurfSpots spots={spots} />

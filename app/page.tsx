@@ -3,7 +3,7 @@ import Balancer from "react-wrap-balancer";
 import { sql } from "@vercel/postgres";
 import { Suspense } from "react";
 import Link from "next/link";
-import { File, Pen, Tag, Boxes, User, Folder, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { SurfSpots } from "@/components/surf/spots-summary";
 import { SpotSummaryFallback } from "@/components/fallbacks/spot-summary-fallback";
 import { Button } from "@/components/ui/button";
@@ -32,10 +32,10 @@ const SurfSpotWrapper = async () => {
 const Content = () => {
   return (
     <div>
-      <h1 className="text-center">
+      <h1 className="text-center md:text-5xl font-bold font-serif">
         <Balancer>Surf City</Balancer>
       </h1>
-      <p className="text-center">
+      <p className="text-center text-muted-foreground">
         Surf City is a surf forecast and surf spot information website.
       </p>
       <div className="flex gap-2 max-w-96 mx-auto my-6">
