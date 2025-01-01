@@ -1,3 +1,5 @@
+export const revalidate = 5;
+
 import {
   getAllPosts,
   getAllAuthors,

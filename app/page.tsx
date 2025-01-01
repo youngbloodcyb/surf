@@ -22,7 +22,6 @@ export default async function Home() {
 
 // SurfSpots
 const SurfSpotWrapper = async () => {
-  "use cache";
   const spots = (await sql`SELECT * FROM spot LIMIT 5`).rows as SurfSpot[];
   return <SurfSpots spots={spots} />;
 };
