@@ -21,12 +21,12 @@ export async function SpotInfo({ slug }: { slug: string }) {
     {
       title: spot.title,
       header: (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full min-h-[14rem]">
           <Image
             src={spot.image_url}
             fill
             alt={spot.title}
-            className="not-prose rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0 transition-all group-hover:blur-sm"
+            className="not-prose rounded-lg object-cover transition-all group-hover:blur-sm"
           />
         </div>
       ),
@@ -37,7 +37,7 @@ export async function SpotInfo({ slug }: { slug: string }) {
       title: "Location",
       description: JSON.stringify(spot.coordinates),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] border bg-gradient-to-r from-green-200 to-blue-500" />
+        <div className="hidden md:flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] border bg-gradient-to-r from-green-200 to-blue-500" />
       ),
       className: "md:col-span-1",
       icon: <Globe className="h-4 w-4 text-neutral-500" />,

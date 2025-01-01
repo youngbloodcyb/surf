@@ -8,26 +8,17 @@ import { MobileNav } from "@/components/nav/mobile-nav";
 import { Main } from "@/components/craft";
 import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
-
 import Logo from "@/public/logo.svg";
-
 import Image from "next/image";
 import Link from "next/link";
-
 import { cn } from "@/lib/utils";
-
 import { AI } from "@/lib/actions/chat";
+import { MessageCircleMore } from "lucide-react";
 
 const mainMenu = {
   home: "/",
-  about: "https://github.com/9d8dev/next-wp",
   blog: "/posts",
-};
-
-const contentMenu = {
-  categories: "/posts/categories",
-  tags: "/posts/tags",
-  authors: "/posts/authors",
+  spots: "/spots",
 };
 
 const fontSans = FontSans({
@@ -40,6 +31,9 @@ export const metadata: Metadata = {
   description: "Surf reports and forecasts",
   metadataBase: new URL("https://surf.cameron.so"),
 };
+
+// Revalidate content every hour
+// export const revalidate = 3600;
 
 export default function RootLayout({
   children,
@@ -101,8 +95,10 @@ const Nav = ({ className, children, id }: NavProps) => {
               </Button>
             ))}
           </div>
-          <Button asChild className="hidden sm:flex">
-            <Link href="https://github.com/9d8dev/next-wp">Get Started</Link>
+          <Button asChild className="hidden sm:flex" variant="outline">
+            <Link href="https://github.com/9d8dev/next-wp">
+              Chat <MessageCircleMore />
+            </Link>
           </Button>
           <MobileNav />
         </div>
@@ -134,18 +130,6 @@ const Footer = () => {
           <div className="flex flex-col gap-2 text-sm">
             <h5 className="font-medium text-base">Website</h5>
             {Object.entries(mainMenu).map(([key, href]) => (
-              <Link
-                className="hover:underline underline-offset-4"
-                key={href}
-                href={href}
-              >
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-2 text-sm">
-            <h5 className="font-medium text-base">Blog</h5>
-            {Object.entries(contentMenu).map(([key, href]) => (
               <Link
                 className="hover:underline underline-offset-4"
                 key={href}
