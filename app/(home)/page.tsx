@@ -3,11 +3,9 @@ import Balancer from "react-wrap-balancer";
 import { sql } from "@vercel/postgres";
 import { Suspense } from "react";
 import Link from "next/link";
-import { Send } from "lucide-react";
 import { SurfSpots } from "@/components/surf/spots-summary";
 import { SpotSummaryFallback } from "@/components/fallbacks/spot-summary-fallback";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { ChatInput } from "./chat-input";
 
 export default async function Home() {
   return (
@@ -38,13 +36,7 @@ const Content = () => {
       <p className="text-center text-muted-foreground">
         Surf City is a surf forecast and surf spot information website.
       </p>
-      <div className="flex gap-2 max-w-96 mx-auto my-6">
-        <Input placeholder="Ask about the waves..." className="flex-1" />
-        <Button type="submit" size="icon">
-          <Send className="h-4 w-4" />
-          <span className="sr-only">Send message</span>
-        </Button>
-      </div>
+      <ChatInput />
       <div className="flex gap-8 justify-center not-prose my-6">
         <Link
           href="/spots"

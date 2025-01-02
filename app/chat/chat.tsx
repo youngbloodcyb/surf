@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ClientMessage } from "@/lib/actions/chat";
 import { useActions, useUIState } from "ai/rsc";
 import { nanoid } from "nanoid";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Waves, CalendarDays, Send, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
 const DEFAULT_PROMPTS = [
   {
@@ -34,6 +35,15 @@ export function Chat() {
   const [input, setInput] = useState<string>("");
   const [conversation, setConversation] = useUIState();
   const { continueConversation, isLoading } = useActions();
+  const searchParams = useSearchParams();
+
+  // Add useEffect to handle initial prompt
+  useEffect(() => {
+    const promptParam = searchParams.get("prompt");
+    if (promptParam) {
+      handleSubmit(promptParam);
+    }
+  }, [searchParams]); // Only run on mount and when searchParams changes
 
   const handleSubmit = async (text: string) => {
     setInput("");
