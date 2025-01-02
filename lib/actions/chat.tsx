@@ -12,6 +12,7 @@ import { CurrentConditionsSchema } from "@/lib/schema/current";
 import { CurrentConditions } from "@/components/surf/current-conditions";
 import { headers } from "next/headers";
 import { Skeleton } from "@/components/ui/skeleton";
+import SurfTable from "@/components/surf/surf-chart";
 
 export interface ServerMessage {
   role: "user" | "assistant";
@@ -36,7 +37,15 @@ export async function continueConversation(
 
   const result = await streamUI({
     model: openai("gpt-4o"),
-    messages: [...history.get(), { role: "user", content: input }],
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a helpful surf assistant. Provide natural responses without using markdown formatting. Keep responses conversational and concise.",
+      },
+      ...history.get(),
+      { role: "user", content: input },
+    ],
     text: ({ content, done }) => {
       if (done) {
         history.done((messages: ServerMessage[]) => [
@@ -67,7 +76,23 @@ export async function continueConversation(
           );
           const json = await forecast.json();
 
-          return <ForecastChart data={json} />;
+          const prediction = await generateText({
+            model: openai("gpt-4o"),
+            prompt: `Based on these surf conditions: ${JSON.stringify(
+              json
+            )} and the user's question: ${input}, please provide more context or answer questions about the surf conditions. Don't return markdown. Keep it short and concise.`,
+          });
+
+          return (
+            <div className="max-w-96">
+              <ForecastChart data={json} />
+              <div className="rounded-lg py-2 px-4">
+                <p className="text-xs text-muted-foreground">
+                  {prediction.text}
+                </p>
+              </div>
+            </div>
+          );
         },
       },
       currentConditions: {
@@ -96,11 +121,42 @@ export async function continueConversation(
             )} and the user's question: ${input}, please provide more context or answer questions about the surf conditions. Don't return markdown. Keep it short and concise.`,
           });
 
-          console.log(prediction.text);
-
           return (
             <div className="max-w-96">
               <CurrentConditions data={json} />
+              <div className="rounded-lg py-2 px-4">
+                <p className="text-xs text-muted-foreground">
+                  {prediction.text}
+                </p>
+              </div>
+            </div>
+          );
+        },
+      },
+      allConditions: {
+        parameters: z.object({}),
+        description:
+          "Get the current surf conditions for all locations to show or compare.",
+        generate: async function* () {
+          yield <Skeleton className="w-96 h-72" />;
+
+          const currentConditions = await fetch(
+            process.env.NODE_ENV === "development"
+              ? `http://127.0.0.1:5328/api/p/all`
+              : `https://${host}/api/p/all`
+          );
+          const json = await currentConditions.json();
+
+          const prediction = await generateText({
+            model: openai("gpt-4o"),
+            prompt: `Based on these surf conditions: ${JSON.stringify(
+              json
+            )} and the user's question: ${input}, please provide more context or answer questions about the surf conditions. Please do not return markdown. Keep it short and concise.`,
+          });
+
+          return (
+            <div className="max-w-96">
+              <SurfTable surfData={json} />
               <div className="rounded-lg py-2 px-4">
                 <p className="text-xs text-muted-foreground">
                   {prediction.text}

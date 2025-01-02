@@ -97,7 +97,7 @@ export function Chat() {
                   }`}
                 >
                   <div
-                    className={`rounded-lg p-2 max-w-[80%] ${
+                    className={`rounded-lg p-2 max-w-[26rem] text-sm ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted"

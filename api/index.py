@@ -60,3 +60,31 @@ def current(location):
         return jsonify({'error': 'No data available'})
     except:
         return jsonify({'error': 'No data available'})
+    
+@app.route("/api/p/all")
+def all():
+    try:
+        results = {}
+        for loc_id, loc_data in locations.items():
+            if loc_id == 'oceanside':
+                continue
+                
+            wave_location = loc_data['location']
+            wave_location.depth = loc_data['depth']
+            buoy = BuoyStation(loc_data['buoy'], wave_location)
+
+            data = buoy.fetch_latest_reading()
+            if data:
+                data.change_units(Units.english)
+                results[loc_id] = {
+                    'height': data.wave_summary.wave_height,
+                    'period': data.wave_summary.period,
+                    'direction': data.wave_summary.compass_direction,
+                    'water_temperature': data.water_temperature,
+                }
+            else:
+                results[loc_id] = {'error': 'No data available'}
+                
+        return jsonify(results)
+    except:
+        return jsonify({'error': 'Error fetching data'})

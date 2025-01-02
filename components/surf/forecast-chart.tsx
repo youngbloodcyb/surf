@@ -1,6 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -37,7 +36,7 @@ const chartConfig = {
 
 export function ForecastChart({ data }: ComponentProps) {
   return (
-    <Card className="w-96 h-72">
+    <Card className="w-full h-72">
       <CardHeader>
         <CardTitle className="sr-only">Wave Forecast</CardTitle>
         <CardDescription className="sr-only">
