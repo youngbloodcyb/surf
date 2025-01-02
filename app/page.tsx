@@ -51,14 +51,14 @@ const Content = () => {
           className="hover:scale-110 transition-all duration-300 flex flex-col items-center"
         >
           {" "}
-          <span className="text-7xl">📍</span>
+          <span className="text-4xl md:text-7xl">📍</span>
           <p className="text-xs text-center">Spots</p>
         </Link>
         <Link
           href="/posts"
           className="hover:scale-110 transition-all duration-300 flex flex-col items-center"
         >
-          <span className="text-7xl">📠</span>
+          <span className="text-4xl md:text-7xl">📠</span>
           <p className="text-xs text-center">Blog</p>
         </Link>
       </div>

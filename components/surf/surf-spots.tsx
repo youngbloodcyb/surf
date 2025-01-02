@@ -51,10 +51,10 @@ export const SurfSpots = ({ spots }: SurfSpotsProps) => {
                   alt={spot.title}
                   width={500}
                   height={500}
-                  className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0 transition-all group-hover:blur-sm"
+                  className="rounded-lg h-16 w-16 md:h-40 md:w-40 object-cover flex-shrink-0 transition-all group-hover:blur-sm"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white font-semibold text-center px-2 text-sm md:text-base">
+                  <span className="text-white font-semibold text-center px-2 text-xs md:text-base">
                     {spot.title}
                   </span>
                 </div>
