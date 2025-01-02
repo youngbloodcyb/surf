@@ -42,14 +42,14 @@ export async function getAllPosts(filterParams?: {
 
 export async function getPostById(id: number): Promise<Post> {
   const url = getUrl(`/wp-json/wp/v2/posts/${id}`);
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 3600 } });
   const post: Post = await response.json();
   return post;
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   const url = getUrl("/wp-json/wp/v2/posts", { slug });
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 3600 } });
   const post: Post[] = await response.json();
   return post[0];
 }
@@ -147,7 +147,7 @@ export async function getAllAuthors(): Promise<Author[]> {
 
 export async function getAuthorById(id: number): Promise<Author> {
   const url = getUrl(`/wp-json/wp/v2/users/${id}`);
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 3600 } });
   const author: Author = await response.json();
   return author;
 }
@@ -196,7 +196,7 @@ export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
 
 export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
   const url = getUrl(`/wp-json/wp/v2/media/${id}`);
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 3600 } });
   const featuredMedia: FeaturedMedia = await response.json();
   return featuredMedia;
 }

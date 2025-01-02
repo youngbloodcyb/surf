@@ -44,7 +44,7 @@ export async function CommentSection({ slug }: { slug: string }) {
               key={comment.id}
               className="font-sans font-normal text-muted-foreground text-sm flex justify-between"
             >
-              <p>{comment.text.slice(0, 60)}</p>
+              <p>{comment.text.slice(0, 60)}...</p>
               <p className="text-xs text-muted-foreground">
                 by <span className="underline">{comment.author}</span>
               </p>
