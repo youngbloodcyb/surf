@@ -1,6 +1,10 @@
 import { Section, Container } from "@/components/craft";
 import { SpotInfo } from "./spot-info";
 import { CommentSection } from "./comment-section";
+import { Suspense } from "react";
+import { CommentFallback } from "./comment-fallback";
+
+export const experimental_ppr = true;
 
 export default async function Page({
   params,
@@ -12,7 +16,9 @@ export default async function Page({
     <Section>
       <Container>
         <SpotInfo slug={slug} />
-        <CommentSection slug={slug} />
+        <Suspense fallback={<CommentFallback />}>
+          <CommentSection slug={slug} />
+        </Suspense>
       </Container>
     </Section>
   );
