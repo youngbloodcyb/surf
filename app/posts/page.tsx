@@ -1,4 +1,4 @@
-export const revalidate = 5;
+export const revalidate = 30;
 
 import {
   getAllPosts,
