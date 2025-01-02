@@ -50,7 +50,7 @@ export default async function Page({
   return (
     <Section>
       <Container>
-        <h1>Posts</h1>
+        <h1 className="text-center md:text-5xl font-bold font-serif">Posts</h1>
         <FilterPosts
           authors={authors}
           tags={tags}

@@ -31,10 +31,10 @@ const Content = () => {
   return (
     <div>
       <h1 className="text-center md:text-5xl font-bold font-serif">
-        <Balancer>Surf City</Balancer>
+        <Balancer>Surf Finder</Balancer>
       </h1>
       <p className="text-center text-muted-foreground">
-        Surf City is a surf forecast and surf spot information website.
+        Surf Finder is a SoCal surf forecast and surf spot information website.
       </p>
       <ChatInput />
       <div className="flex gap-8 justify-center not-prose my-6">
