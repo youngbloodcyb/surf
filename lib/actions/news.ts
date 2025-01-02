@@ -2,6 +2,7 @@
 
 import { Post } from "@/lib/types/wordpress";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 
 export async function getNews() {
   try {
@@ -20,6 +21,7 @@ export async function getNews() {
       await sql`INSERT INTO story (title, link) VALUES (${title}, ${link})`;
     }
 
+    revalidatePath("/news");
     return { success: true };
   } catch (error) {
     console.error("Error fetching and saving news posts:", error);
