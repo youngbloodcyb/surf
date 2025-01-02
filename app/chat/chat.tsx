@@ -77,9 +77,7 @@ export function Chat() {
                     className="rounded-xl -mr-4 mt-4 p-6 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 relative group w-64"
                   >
                     <div className="flex flex-col items-center gap-2 text-center">
-                      <div className="rounded-full bg-primary/10 p-3 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        {prompt.icon}
-                      </div>
+                      {prompt.icon}
                       <div className="font-medium">{prompt.title}</div>
                       <div className="text-sm text-muted-foreground">
                         {prompt.prompt}

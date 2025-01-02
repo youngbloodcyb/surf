@@ -34,10 +34,9 @@ export async function SpotInfo({ slug }: { slug: string }) {
       icon: <Camera className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "Location",
       description: JSON.stringify(spot.coordinates),
       header: (
-        <div className="hidden md:flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] border bg-gradient-to-r from-green-200 to-blue-500" />
+        <div className="hidden md:flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] border bg-gradient-to-tr from-green-200 to-blue-500" />
       ),
       className: "md:col-span-1",
       icon: <Globe className="h-4 w-4 text-neutral-500" />,

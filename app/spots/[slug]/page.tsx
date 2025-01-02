@@ -1,5 +1,6 @@
 import { Section, Container } from "@/components/craft";
 import { SpotInfo } from "./spot-info";
+import { CommentSection } from "./comment-section";
 
 export default async function Page({
   params,
@@ -11,6 +12,7 @@ export default async function Page({
     <Section>
       <Container>
         <SpotInfo slug={slug} />
+        <CommentSection slug={slug} />
       </Container>
     </Section>
   );
