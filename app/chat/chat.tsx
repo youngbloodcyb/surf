@@ -41,7 +41,7 @@ export function Chat() {
   useEffect(() => {
     const promptParam = searchParams.get("prompt");
     if (promptParam) {
-      handleSubmit(promptParam);
+      setInput(promptParam);
     }
   }, [searchParams]); // Only run on mount and when searchParams changes
 
@@ -84,12 +84,14 @@ export function Chat() {
                       zIndex: 100,
                     }}
                     onClick={() => handleSubmit(prompt.prompt)}
-                    className="rounded-xl -mr-4 mt-4 p-6 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 relative group w-64"
+                    className="rounded-xl -mr-4 mt-4 p-6 bg-white border border-neutral-100 flex-shrink-0 relative group w-24 md:w-64"
                   >
                     <div className="flex flex-col items-center gap-2 text-center">
                       {prompt.icon}
-                      <div className="font-medium">{prompt.title}</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="font-medium text-xs md:text-base">
+                        {prompt.title}
+                      </div>
+                      <div className="text-xs md:text-sm text-muted-foreground">
                         {prompt.prompt}
                       </div>
                     </div>
