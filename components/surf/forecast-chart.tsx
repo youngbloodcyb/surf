@@ -26,7 +26,7 @@ const chartConfig = {
 
 export function ForecastChart({ data }: { data: TideData[] }) {
   return (
-    <Card className="w-full h-72">
+    <Card className="w-64 md:w-full h-72">
       <CardHeader>
         <CardTitle className="sr-only">Wave Forecast</CardTitle>
         <CardDescription className="sr-only">

@@ -23,7 +23,7 @@ export default function SurfTable({
   surfData: SurfDataByLocation;
 }) {
   return (
-    <Card className="w-full">
+    <Card className="w-64 md:w-full">
       <CardContent>
         <Table>
           <TableHeader>

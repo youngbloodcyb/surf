@@ -2,7 +2,6 @@
 
 import { createAI, getMutableAIState, streamUI } from "ai/rsc";
 import { openai } from "@ai-sdk/openai";
-import { ReactNode } from "react";
 import { z } from "zod";
 import { nanoid } from "nanoid";
 import { generateObject, generateText } from "ai";
@@ -50,7 +49,7 @@ export async function continueConversation(
         description: "Get a forecast for a specific location.",
         parameters: ForecastSchema,
         generate: async function* ({ location }) {
-          yield <Skeleton className="w-96 h-72 animate-pulse" />;
+          yield <Skeleton className="w-64 md:w-96 h-72 animate-pulse" />;
 
           const parsedLocation = await generateObject({
             model: openai("gpt-4o"),
@@ -88,7 +87,7 @@ export async function continueConversation(
         description: "Get the current surf conditions for a specific location.",
         parameters: CurrentConditionsSchema,
         generate: async function* ({ location }) {
-          yield <Skeleton className="w-96 h-72 animate-pulse" />;
+          yield <Skeleton className="w-64 md:w-96 h-72 animate-pulse" />;
 
           const parsedLocation = await generateObject({
             model: openai("gpt-4o"),
@@ -127,7 +126,7 @@ export async function continueConversation(
         description:
           "Get the current surf conditions for all locations to show or compare.",
         generate: async function* () {
-          yield <Skeleton className="w-96 h-72 animate-pulse" />;
+          yield <Skeleton className="w-64 md:w-96 h-72 animate-pulse" />;
 
           const currentConditions = await fetch(
             process.env.NODE_ENV === "development"
