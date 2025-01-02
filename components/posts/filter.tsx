@@ -10,30 +10,6 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-interface Author {
-  id: number;
-  name: string;
-}
-
-interface Tag {
-  id: number;
-  name: string;
-}
-
-interface Category {
-  id: number;
-  name: string;
-}
-
-interface FilterPostsProps {
-  authors: Author[];
-  tags: Tag[];
-  categories: Category[];
-  selectedAuthor?: string;
-  selectedTag?: string;
-  selectedCategory?: string;
-}
-
 export default function FilterPosts({
   authors,
   tags,

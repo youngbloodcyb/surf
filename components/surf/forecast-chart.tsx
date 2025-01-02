@@ -17,16 +17,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// Define the type for the data prop
-type TideData = {
-  height: number;
-  time: string;
-};
-
-interface ComponentProps {
-  data: TideData[];
-}
-
 const chartConfig = {
   height: {
     label: "Tide Height",
@@ -34,7 +24,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ForecastChart({ data }: ComponentProps) {
+export function ForecastChart({ data }: { data: TideData[] }) {
   return (
     <Card className="w-full h-72">
       <CardHeader>

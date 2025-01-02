@@ -8,19 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Compass } from "lucide-react";
-
-interface SurfData {
-  direction: string;
-  height: number;
-  period: number;
-  water_temperature: number;
-}
-
-interface SurfDataByLocation {
-  [key: string]: SurfData;
-}
+import { Card, CardContent } from "@/components/ui/card";
 
 function formatLocationName(name: string): string {
   return name

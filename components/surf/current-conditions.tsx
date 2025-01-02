@@ -1,17 +1,9 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Waves, Thermometer, Clock3, Compass } from "lucide-react";
 import { motion } from "framer-motion";
 
-interface SurfData {
-  direction: string;
-  height: number;
-  period: number;
-  water_temperature: number;
-}
-
-// Add rotation values for the cards
 const rotations = [-3, 3, -4, 5];
 
 export function CurrentConditions({ data }: { data: SurfData }) {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ClientMessage } from "@/lib/actions/chat";
 import { useActions, useUIState } from "ai/rsc";
 import { nanoid } from "nanoid";
 import { Button } from "@/components/ui/button";

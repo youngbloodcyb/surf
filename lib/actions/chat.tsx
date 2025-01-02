@@ -14,17 +14,6 @@ import { headers } from "next/headers";
 import { Skeleton } from "@/components/ui/skeleton";
 import SurfTable from "@/components/surf/surf-chart";
 
-export interface ServerMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
-export interface ClientMessage {
-  id: string;
-  role: "user" | "assistant";
-  display: ReactNode;
-}
-
 export async function continueConversation(
   input: string
 ): Promise<ClientMessage> {
