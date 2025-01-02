@@ -1,10 +1,11 @@
-export const revalidate = 30;
+export const revalidate = 3600;
 
 import {
   getPostBySlug,
   getFeaturedMediaById,
   getAuthorById,
   getCategoryById,
+  getAllPosts,
 } from "@/lib/actions/wordpress";
 
 import { Section, Container, Article } from "@/components/craft";
@@ -28,12 +29,17 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export default async function Page({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<Record<string, string>>;
 }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
