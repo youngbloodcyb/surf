@@ -32,6 +32,7 @@ Every page returns a desktop performance score of 97-100 on Google PageSpeed Ins
 - Serverless Functions (Python and Node.js runtimes)
 - Server Actions
 - Vercel AI SDK (RSC) — including generative UI
+- Vercel Analytics (for tracking chat interactions and overall analytics)
 - Incremental Static Regeneration
 - Partial Prerendering
 - Static Site Generation
@@ -69,7 +70,7 @@ Route (app)
 
 ### Chat interface
 
-Ask questions about current surf for specific locations (data only available for a few locations currently). 
+Ask questions about current surf for specific locations (data only available for a few locations currently).
 
 ![CleanShot 2025-01-02 at 09 06 15@2x](https://github.com/user-attachments/assets/7b467236-562e-434f-8a71-c0c3ae9d797d)
 
@@ -92,6 +93,5 @@ Uses partial prerendering to mix static and dynamic content on a page.
 Static blog with dynamic server-side rendered filtering.
 
 ![CleanShot 2025-01-02 at 09 10 20@2x](https://github.com/user-attachments/assets/a0b8c175-96dd-4501-a9eb-787c4f14ecf8)
-
 
 built by [cameron youngblood](https://cameron.so)

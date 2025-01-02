@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Waves, CalendarDays, Send, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 const DEFAULT_PROMPTS = [
   {
@@ -57,6 +58,8 @@ export function Chat() {
       ...currentConversation,
       message,
     ]);
+
+    track("chat_sent");
   };
 
   return (

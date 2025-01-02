@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { Main } from "@/components/craft";
@@ -33,9 +32,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://surf.cameron.so"),
 };
 
-// Revalidate content every hour
-// export const revalidate = 3600;
-
 export default function RootLayout({
   children,
 }: {
@@ -52,6 +48,7 @@ export default function RootLayout({
           <Main>{children}</Main>
         </AI>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
