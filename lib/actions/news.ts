@@ -26,3 +26,11 @@ export async function getNews() {
     return { success: false };
   }
 }
+
+export async function getNewsFromDb() {
+  const news = await sql`SELECT * FROM story`;
+  if (news.rows.length === 0) {
+    return [];
+  }
+  return news.rows;
+}

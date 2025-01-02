@@ -19,6 +19,7 @@ const mainMenu = {
   home: "/",
   blog: "/posts",
   spots: "/spots",
+  news: "/news",
 };
 
 const fontSans = FontSans({

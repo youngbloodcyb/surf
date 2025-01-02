@@ -4,5 +4,11 @@
     "api/index.py": {
       "maxDuration": 10
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/news",
+      "schedule": "0 9 * * *"
+    }
+  ]
 }
