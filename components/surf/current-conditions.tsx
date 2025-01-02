@@ -8,7 +8,7 @@ const rotations = [-3, 3, -4, 5];
 
 export function CurrentConditions({ data }: { data: SurfData }) {
   return (
-    <Card className="w-96 bg-transparent border-none shadow-none p-4">
+    <Card className="max-w-96 bg-transparent border-none shadow-none p-4">
       <CardContent className="grid grid-cols-2 gap-2">
         {/* Compass Direction */}
         <motion.div

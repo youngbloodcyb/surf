@@ -1,3 +1,5 @@
+"use server";
+
 // Description: WordPress API functions
 // Used to fetch data from a WordPress site using the WordPress REST API
 // Types are imported from `wp.d.ts`
